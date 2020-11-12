@@ -1,17 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <h1><%= @Cocktail.name %></h1>
+      <h1><%= @cocktail.name %></h1>
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <th scope="row">Ingredients</th>
-            <td><%= @ingredients %></td>
+            <th scope="row">Doses</th>
+            <%@cocktail.doses.each do |dose| %>
+            <td>ingredient <%= @dose.ingredient.name %></td>
+            <td>doses <%= @dose.description %> <%= link_to "Delete", dose_path(dose), methode: :delte, datas: {confirm: "DELETE?"} %></td>
+            <%end %>
           </tr>
         </tbody>
       </table>
+      <%= link_to "Add a new dose", cocktail_doses_path, :class => "btn btn-primary" %>
+      <%= link_to "Delete dose", cocktails_dose_path %>
 
-      <%= link_to "See all cocktails", cocktails_path %>
+      <%= link_to "See all cocktails", cocktails_path, :class => "btn btn-primary" %>
     </div>
   </div>
 </div>
