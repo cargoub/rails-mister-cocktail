@@ -38,11 +38,15 @@ ActiveRecord::Schema.define(version: 2020_11_13_074434) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.text "content"
+    t.integer "rating"
+    t.bigint "cocktail_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cocktail_id"], name: "index_reviews_on_cocktail_id"
   end
 
   add_foreign_key "doses", "cocktails"
   add_foreign_key "doses", "ingredients"
+  add_foreign_key "reviews", "cocktails"
 end
-
